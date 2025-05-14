@@ -1,38 +1,28 @@
-// swift-tools-version:5.5
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
+// swift-tools-version:5.3
 import PackageDescription
 
 let package = Package(
     name: "SwiftSocket",
     platforms: [
-        .macOS(.v10_13),
-        .iOS(.v11),
-        .tvOS(.v11),
-        .watchOS(.v4)
+        .iOS(.v10),
+        .macOS(.v10_12)
     ],
     products: [
         .library(
             name: "SwiftSocket",
-            targets: ["SwiftSocket"])
+            targets: ["SwiftSocket"]
+        ),
     ],
     targets: [
         .target(
-            name: "SwiftSocket",
-            path: "Sources",
-            sources: [
-                "Result.swift",
-                "Socket.swift",
-                "TCPClient.swift",
-                "UDPClient.swift",
-                "SwiftSocket.h"
-            ],
+            name: "CySocket",
+            path: "Sources/CySocket",
             publicHeadersPath: "."
         ),
-        .testTarget(
-            name: "SwiftSocketTests",
-            dependencies: ["SwiftSocket"],
-            path: "Tests/SwiftSocketTests"
+        .target(
+            name: "SwiftSocket",
+            dependencies: ["CySocket"],
+            path: "Sources/SwiftSocket"
         )
     ]
 )
