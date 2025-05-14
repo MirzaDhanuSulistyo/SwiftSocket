@@ -1,0 +1,4 @@
+module SwiftSocket {
+    header "/Users/olsera/Work/SPM/SwiftSocket/.build/arm64-apple-macosx/debug/SwiftSocket.build/SwiftSocket-Swift.h"
+    requires objc
+}
