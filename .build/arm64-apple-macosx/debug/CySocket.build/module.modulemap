@@ -1,4 +1,0 @@
-module CySocket {
-    umbrella "/Users/olsera/Work/SPM/SwiftSocket/Sources/CySocket"
-    export *
-}
