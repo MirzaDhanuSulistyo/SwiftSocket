@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,22 +6,33 @@ import PackageDescription
 let package = Package(
     name: "SwiftSocket",
     platforms: [
-        .iOS(.v11)
+        .macOS(.v10_13),
+        .iOS(.v11),
+        .tvOS(.v11),
+        .watchOS(.v4)
     ],
     products: [
-        // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "SwiftSocket",
-            targets: ["SwiftSocket"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+            targets: ["SwiftSocket"])
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(name: "SwiftSocket", path: "Sources"),
-    ],
-    swiftLanguageVersions: [.version("5")]
+        .target(
+            name: "SwiftSocket",
+            path: "Sources",
+            sources: [
+                "Result.swift",
+                "Socket.swift",
+                "TCPClient.swift",
+                "UDPClient.swift",
+                "SwiftSocket.h"
+            ],
+            publicHeadersPath: "."
+        ),
+        .testTarget(
+            name: "SwiftSocketTests",
+            dependencies: ["SwiftSocket"],
+            path: "Tests/SwiftSocketTests"
+        )
+    ]
 )
